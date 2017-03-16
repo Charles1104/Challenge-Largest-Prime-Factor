@@ -1,18 +1,40 @@
-exports.largestPrimeFactor = function(n){
 
-  var primeNumber = [];
 
-    for(var i = 2; i < n; i++) {
-      for (var j = 2 ; j < i; j++){
-        if(i % j === 0) {
-          break;
-        }
-        primeNumber.push(i);
+
+var primeNumber = [];
+
+function primeNumberArray(n){
+  for(var i = 2; i <= n; i++) {
+    if (isPrime(i)){
+      primeNumber.push(i);
+    }
+  }
+  return primeNumber;
+}
+
+
+function isPrime(x){
+  for (var i = 2 ; i < x ; i++){
+    if(x % i === 0) {
+      return false;
       }
     }
+  return true;
+}
 
-  return primeNumber;
+exports.largestPrimeFactor = function(n){
+
+  primeNumberArray(n);
+  var factors = [];
+
+  for (var j = 1; j < primeNumber.length ; j++){
+    if (n % primeNumber[j] === 0){
+      factors.push(primeNumber[j]);
+      console.log(factors);
+    }
+
+  }
+  return factors[factors.length-1];
 
 };
 
-console.log(largestPrimeFactor(20));
